@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2026 at 03:01 AM
+-- Generation Time: Jul 06, 2026 at 07:38 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -254,8 +254,8 @@ CREATE TABLE `permission_role` (
 CREATE TABLE `personal_access_tokens` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` text NOT NULL,
+  `tokenable_id` char(36) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `token` varchar(64) NOT NULL,
   `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
@@ -263,6 +263,13 @@ CREATE TABLE `personal_access_tokens` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `personal_access_tokens`
+--
+
+INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
+(1, 'App\\Models\\User', '5432249b-7935-11f1-9f60-005056c00001', 'api-token', 'ddd97d5bf09ea0310baf7f0b2ca3e23faac3929c60e236ab319c24ae0b020da7', '[\"*\"]', NULL, NULL, '2026-07-06 12:11:49', '2026-07-06 12:11:49');
 
 -- --------------------------------------------------------
 
@@ -613,7 +620,10 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `preferred_language`, `is_locked`, `failed_attempts`, `lockout_until`, `remember_token`, `created_at`, `updated_at`) VALUES
 ('2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'saja_faculty', 'saja@uimp.edu.ly', '$2y$12$Tb6Jcoqt5LHX98bfhQJYv.dUEJmokNvloyeHKCapN8U1T2D6q/tYK', 'ar', 0, 0, NULL, NULL, '2026-06-16 13:29:57', '2026-06-16 13:29:57'),
-('4866dec3-d9f5-4cd1-b99c-d9b41902bbdc', 'dania_student', 'dania@uimp.edu.ly', '$2y$12$/5clw2zry7lKkaAR48rjUeBnaC.SETISMQO0wqiqBSJnkSVq6XqfG', 'ar', 0, 0, NULL, NULL, '2026-06-16 13:29:56', '2026-06-16 13:29:56');
+('4866dec3-d9f5-4cd1-b99c-d9b41902bbdc', 'dania_student', 'dania@uimp.edu.ly', '$2y$12$/5clw2zry7lKkaAR48rjUeBnaC.SETISMQO0wqiqBSJnkSVq6XqfG', 'ar', 0, 0, NULL, NULL, '2026-06-16 13:29:56', '2026-06-16 13:29:56'),
+('5432249b-7935-11f1-9f60-005056c00001', 'mustabeen', 'mustabeen@uimp.edu.ly', '$2y$12$1mYAd5VwptHe0z0VgrVNfOuCS7HQulPfE.EooNpUbMbBeTVOESsry', 'ar', 0, 0, NULL, NULL, '2026-07-06 12:22:15', '2026-07-06 11:53:53'),
+('cce2d614-793f-11f1-9f60-005056c00001', 'login_user', 'login@uimp.edu.ly', '$2y$12$6X9v8Qp2zq3Wm9eR0cJd0uV8q7HkJvG8bZpL1xQmTtYk8sVn1aF3e', 'ar', 0, 0, NULL, NULL, '2026-07-06 13:37:12', '2026-07-06 13:37:12'),
+('e62309da-793c-11f1-9f60-005056c00001', 'test_user', 'test@uimp.edu.ly', '$2y$12$wH3Q8mG7yY0J9kq1pZb9hOQ9qQm5cV3y0xV6h8fQ8zZp9QeQm3a2S', 'ar', 0, 0, NULL, NULL, '2026-07-06 13:16:26', '2026-07-06 13:16:26');
 
 -- --------------------------------------------------------
 
@@ -945,7 +955,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `promotion_audit_logs`
