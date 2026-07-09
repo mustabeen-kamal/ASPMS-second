@@ -1,5 +1,5 @@
-saja@uimp.edu.ly           1234
-dania@uimp.edu.ly          12345
-mustabeen@uimp.edu.ly      123456
-login@uimp.edu.ly          1234567
-test@uimp.edu.ly           12345678
+saja@uimp.edu.ly           1234              department_committee
+dania@uimp.edu.ly          12345             faculty_committee
+mustabeen@uimp.edu.ly      123456            applicant
+login@uimp.edu.ly          1234567           university_admin
+test@uimp.edu.ly           12345678          promotion_admin
