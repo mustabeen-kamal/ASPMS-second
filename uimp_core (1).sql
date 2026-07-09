@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 06, 2026 at 07:38 PM
+-- Generation Time: Jul 09, 2026 at 09:30 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,36 @@ SET time_zone = "+00:00";
 --
 -- Database: `uimp_core`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appeals`
+--
+
+CREATE TABLE `appeals` (
+  `appeal_id` char(36) NOT NULL,
+  `application_id` char(36) NOT NULL,
+  `appellant_user_id` char(36) NOT NULL,
+  `reason` text NOT NULL,
+  `status` enum('PENDING','APPROVED','REJECTED') DEFAULT 'PENDING',
+  `response` text DEFAULT NULL,
+  `reviewed_by_user_id` char(36) DEFAULT NULL,
+  `submitted_at` timestamp NULL DEFAULT NULL,
+  `reviewed_at` timestamp NULL DEFAULT NULL,
+  `created_by` char(36) DEFAULT NULL,
+  `updated_by` char(36) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `appeals`
+--
+
+INSERT INTO `appeals` (`appeal_id`, `application_id`, `appellant_user_id`, `reason`, `status`, `response`, `reviewed_by_user_id`, `submitted_at`, `reviewed_at`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+('0ca3371c-7b9d-11f1-a78f-005056c00001', '22222222-2222-2222-2222-222222222222', '5432249b-7935-11f1-9f60-005056c00001', 'Request review of promotion decision', 'PENDING', NULL, NULL, '2026-07-09 13:49:46', NULL, '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-09 13:49:46', '2026-07-09 13:49:46', NULL);
 
 -- --------------------------------------------------------
 
@@ -102,7 +132,11 @@ CREATE TABLE `committee_assignments` (
 
 INSERT INTO `committee_assignments` (`assignment_id`, `application_id`, `user_id`, `tier`, `is_chair`, `status`, `assigned_at`, `assigned_by_user_id`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
 ('44444444-4444-4444-4444-444444444441', '22222222-2222-2222-2222-222222222222', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'department', 1, 'ACTIVE', NULL, '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL),
-('44444444-4444-4444-4444-444444444442', '22222222-2222-2222-2222-222222222222', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'faculty', 1, 'ACTIVE', NULL, '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL);
+('44444444-4444-4444-4444-444444444442', '22222222-2222-2222-2222-222222222222', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'faculty', 1, 'ACTIVE', NULL, '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL),
+('8930d5b9-c988-4868-85f6-52545ca9de81', '019f442c-7b89-7178-9074-28e535e5bd3e', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'department', 0, 'ACTIVE', '2026-07-09 00:06:35', '5432249b-7935-11f1-9f60-005056c00001', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-09 00:06:35', '2026-07-09 00:06:35', NULL),
+('a1f8d0f0-c869-4f35-a849-32923252b231', '019f4471-4ce7-72f1-987f-3e68d0fe700d', 'cce2d614-793f-11f1-9f60-005056c00001', 'university', 1, 'ACTIVE', '2026-07-09 00:10:19', '5432249b-7935-11f1-9f60-005056c00001', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-09 00:10:19', '2026-07-09 00:10:19', NULL),
+('a570119c-910d-41fe-bf97-64ccd2d0bf67', '019f4471-4ce7-72f1-987f-3e68d0fe700d', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'department', 0, 'ACTIVE', '2026-07-09 00:07:36', '5432249b-7935-11f1-9f60-005056c00001', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-09 00:07:36', '2026-07-09 00:07:36', NULL),
+('c0be83ee-4073-42a4-bedd-662da96eacfb', '019f4471-4ce7-72f1-987f-3e68d0fe700d', 'e62309da-793c-11f1-9f60-005056c00001', 'department', 0, 'ACTIVE', '2026-07-09 00:07:54', '5432249b-7935-11f1-9f60-005056c00001', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-09 00:07:54', '2026-07-09 00:07:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -128,7 +162,8 @@ CREATE TABLE `employees` (
 --
 
 INSERT INTO `employees` (`id`, `user_id`, `employee_number`, `full_name_ar`, `full_name_en`, `academic_rank`, `faculty_name`, `department_name`, `created_at`, `updated_at`) VALUES
-('71bf3eee-db29-4731-a8ea-5efc4937c03f', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'EMP-2026-1002', 'ساجا مهندسة البرمجيات', 'Saja Software Engineer', 'أستاذ مساعد', 'تقنية المعلومات', 'هندسة البرمجيات', '2026-06-16 13:29:57', '2026-06-16 13:29:57');
+('71bf3eee-db29-4731-a8ea-5efc4937c03f', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'EMP-2026-1002', 'ساجا مهندسة البرمجيات', 'Saja Software Engineer', 'أستاذ مساعد', 'تقنية المعلومات', 'هندسة البرمجيات', '2026-06-16 13:29:57', '2026-06-16 13:29:57'),
+('8c5180f4-7b33-11f1-a78f-005056c00001', '5432249b-7935-11f1-9f60-005056c00001', 'EMP001', 'مستبين كمال', 'Mustabeen Kamal', 'أستاذ مساعد', 'Faculty of Information Technology', 'Computer Science', '2026-07-09 01:14:35', '2026-07-09 01:14:35');
 
 -- --------------------------------------------------------
 
@@ -269,7 +304,10 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `expires_at`, `created_at`, `updated_at`) VALUES
-(1, 'App\\Models\\User', '5432249b-7935-11f1-9f60-005056c00001', 'api-token', 'ddd97d5bf09ea0310baf7f0b2ca3e23faac3929c60e236ab319c24ae0b020da7', '[\"*\"]', NULL, NULL, '2026-07-06 12:11:49', '2026-07-06 12:11:49');
+(1, 'App\\Models\\User', '5432249b-7935-11f1-9f60-005056c00001', 'api-token', 'ddd97d5bf09ea0310baf7f0b2ca3e23faac3929c60e236ab319c24ae0b020da7', '[\"*\"]', NULL, NULL, '2026-07-06 12:11:49', '2026-07-06 12:11:49'),
+(2, 'App\\Models\\User', '5432249b-7935-11f1-9f60-005056c00001', 'api-token', '4ae3f3d456b50edc3089064e56b9b8806410fe6f72713a15568488dae9297118', '[\"*\"]', NULL, NULL, '2026-07-08 19:40:55', '2026-07-08 19:40:55'),
+(3, 'App\\Models\\User', '5432249b-7935-11f1-9f60-005056c00001', 'api-token', 'f07783032e39e1fe9ec7341fbeaef316d543ca772a080a1d7d0831b59cbe4819', '[\"*\"]', NULL, NULL, '2026-07-08 19:44:37', '2026-07-08 19:44:37'),
+(4, 'App\\Models\\User', '5432249b-7935-11f1-9f60-005056c00001', 'api-token', '1eb814f7b1c64afe848b8ecf608f487481d368261f07fa23a16b10b2be33d9be', '[\"*\"]', NULL, NULL, '2026-07-08 21:08:15', '2026-07-08 21:08:15');
 
 -- --------------------------------------------------------
 
@@ -300,7 +338,9 @@ CREATE TABLE `portfolio_documents` (
 --
 
 INSERT INTO `portfolio_documents` (`document_id`, `application_id`, `uploaded_by_user_id`, `type`, `description`, `file_name`, `storage_path`, `file_size`, `file_mime_type`, `uploaded_at`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('99999999-9999-9999-9999-999999999991', '22222222-2222-2222-2222-222222222222', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'research_paper', 'بحث منشور في مجلة علمية محكمة', 'research_paper_2025.pdf', 'promotion/applications/22222222-2222-2222-2222-222222222222/documents/research_paper_2025.pdf', 2048576, 'application/pdf', '2026-07-06 00:48:38', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL);
+('0cd8388f-dc65-4de4-a594-1ac40ab790fd', '019f4471-4ce7-72f1-987f-3e68d0fe700d', '5432249b-7935-11f1-9f60-005056c00001', 'teaching_evaluation', 'kkk', 'ITSE423-S2026-Lect7.pdf', 'documents/YJEfJlSbvlwKWDmNks7auBOfUg1bK1VdJ7V1Vnbo.pdf', 898597, 'application/pdf', '2026-07-08 23:32:05', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-08 23:32:05', '2026-07-08 23:32:05', NULL),
+('99999999-9999-9999-9999-999999999991', '22222222-2222-2222-2222-222222222222', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'research_paper', 'بحث منشور في مجلة علمية محكمة', 'research_paper_2025.pdf', 'promotion/applications/22222222-2222-2222-2222-222222222222/documents/research_paper_2025.pdf', 2048576, 'application/pdf', '2026-07-06 00:48:38', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL),
+('b4ce275a-b40b-47e0-b527-909095f7bc76', '019f4471-4ce7-72f1-987f-3e68d0fe700d', '5432249b-7935-11f1-9f60-005056c00001', 'teaching_evaluation', 'kkk', 'ITSE423-S2026-Lect7.pdf', 'documents/Wx7oNH4Db63b9IRlNrRz0kO7ZHlTEMH1z2z8woDK.pdf', 898597, 'application/pdf', '2026-07-08 23:32:08', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-08 23:32:08', '2026-07-08 23:32:08', NULL);
 
 -- --------------------------------------------------------
 
@@ -335,7 +375,9 @@ CREATE TABLE `promotion_applications` (
 --
 
 INSERT INTO `promotion_applications` (`application_id`, `staff_id`, `promotion_cycle_id`, `applicant_user_id`, `current_rank`, `target_rank`, `department_id`, `faculty_id`, `department_name_snapshot`, `faculty_name_snapshot`, `submission_date`, `status`, `remarks`, `ip_address`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('22222222-2222-2222-2222-222222222222', '71bf3eee-db29-4731-a8ea-5efc4937c03f', '11111111-1111-1111-1111-111111111111', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'أستاذ مساعد', 'ASSOCIATE_PROFESSOR', NULL, NULL, 'هندسة البرمجيات', 'تقنية المعلومات', NULL, 'DEPARTMENT_REVIEW', 'تطبيق للترقية بناءً على الأبحاث المنشورة والتقييمات التعليمية المتميزة', NULL, '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL);
+('22222222-2222-2222-2222-222222222222', '71bf3eee-db29-4731-a8ea-5efc4937c03f', '11111111-1111-1111-1111-111111111111', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'أستاذ مساعد', 'ASSOCIATE_PROFESSOR', NULL, NULL, 'هندسة البرمجيات', 'تقنية المعلومات', NULL, 'DEPARTMENT_REVIEW', 'تطبيق للترقية بناءً على الأبحاث المنشورة والتقييمات التعليمية المتميزة', NULL, '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL),
+('81f83387-0580-4aed-8976-5b8e2272897c', '8c5180f4-7b33-11f1-a78f-005056c00001', '11111111-1111-1111-1111-111111111111', '5432249b-7935-11f1-9f60-005056c00001', 'أستاذ مساعد', 'SENIOR_LECTURER', NULL, NULL, 'Computer Science', 'Faculty of Information Technology', '2026-07-09 11:04:25', 'SUBMITTED', 'ففففففف', '127.0.0.1', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-09 11:04:25', '2026-07-09 11:04:25', NULL),
+('a49b3f34-e43e-4fee-8c0f-e161fb27eb16', '8c5180f4-7b33-11f1-a78f-005056c00001', '11111111-1111-1111-1111-111111111111', '5432249b-7935-11f1-9f60-005056c00001', 'أستاذ مساعد', 'SENIOR_LECTURER', NULL, NULL, 'Computer Science', 'Faculty of Information Technology', '2026-07-09 11:05:45', 'SUBMITTED', 'اطلب ترقيتي الى استاذ', '127.0.0.1', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-09 11:05:45', '2026-07-09 11:05:45', NULL);
 
 -- --------------------------------------------------------
 
@@ -419,6 +461,38 @@ INSERT INTO `promotion_cycles` (`cycle_id`, `name_en`, `name_ar`, `start_date`, 
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `promotion_requests`
+--
+
+CREATE TABLE `promotion_requests` (
+  `request_id` char(36) NOT NULL,
+  `user_id` char(36) NOT NULL,
+  `cycle_id` char(36) NOT NULL,
+  `academic_rank` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `status` enum('PENDING','APPROVED','REJECTED') NOT NULL DEFAULT 'PENDING',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `promotion_requests`
+--
+
+INSERT INTO `promotion_requests` (`request_id`, `user_id`, `cycle_id`, `academic_rank`, `description`, `status`, `created_at`, `updated_at`) VALUES
+('019f442c-7b89-7178-9074-28e535e5bd3e', '5432249b-7935-11f1-9f60-005056c00001', '11111111-1111-1111-1111-111111111111', '1', 'first try', 'PENDING', '2026-07-08 21:59:53', '2026-07-08 22:33:37'),
+('019f442d-ec77-719f-891d-da9e07b96af7', '5432249b-7935-11f1-9f60-005056c00001', '11111111-1111-1111-1111-111111111111', '2', 'second try', 'PENDING', '2026-07-08 22:01:28', '2026-07-08 22:33:50'),
+('019f4435-86b6-73d8-b10c-c515c964ac6e', '5432249b-7935-11f1-9f60-005056c00001', '11111111-1111-1111-1111-111111111111', '3', 'third try', 'PENDING', '2026-07-08 22:09:46', '2026-07-08 22:34:03'),
+('019f4436-4cfd-70b8-83c8-768df97bfbd2', '5432249b-7935-11f1-9f60-005056c00001', '11111111-1111-1111-1111-111111111111', '4', 'fourth try', 'PENDING', '2026-07-08 22:10:37', '2026-07-08 22:34:56'),
+('019f4439-e6f5-7265-9d82-b0410178d51b', '5432249b-7935-11f1-9f60-005056c00001', '11111111-1111-1111-1111-111111111111', '5', 'fifth try', 'PENDING', '2026-07-08 22:14:33', '2026-07-08 22:35:08'),
+('019f4471-4ce7-72f1-987f-3e68d0fe700d', '5432249b-7935-11f1-9f60-005056c00001', '11111111-1111-1111-1111-111111111111', 'أستاذ مساعد', 'new thing', 'PENDING', '2026-07-08 23:15:03', '2026-07-08 23:15:03'),
+('019f46f9-c8b2-72a1-8b19-197c24b747b4', '5432249b-7935-11f1-9f60-005056c00001', '11111111-1111-1111-1111-111111111111', 'أستاذ مساعد', 'ففففففف', 'PENDING', '2026-07-09 11:03:22', '2026-07-09 11:03:22'),
+('019f46fa-bdf9-713c-ac5f-26d1b449a556', '5432249b-7935-11f1-9f60-005056c00001', '11111111-1111-1111-1111-111111111111', 'أستاذ مساعد', 'ففففففف', 'PENDING', '2026-07-09 11:04:25', '2026-07-09 11:04:25'),
+('019f46fb-f6de-735f-99e3-0f34d64aa8f2', '5432249b-7935-11f1-9f60-005056c00001', '11111111-1111-1111-1111-111111111111', 'أستاذ مساعد', 'اطلب ترقيتي الى استاذ', 'PENDING', '2026-07-09 11:05:45', '2026-07-09 11:05:45');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `promotion_roles`
 --
 
@@ -459,9 +533,11 @@ CREATE TABLE `promotion_user_roles` (
 --
 
 INSERT INTO `promotion_user_roles` (`user_id`, `role_id`, `created_at`) VALUES
-('2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '88888888-8888-8888-8888-888888888881', '2026-07-06 00:48:38'),
-('2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '88888888-8888-8888-8888-888888888882', '2026-07-06 00:48:38'),
-('2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '88888888-8888-8888-8888-888888888883', '2026-07-06 00:48:38');
+('2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '88888888-8888-8888-8888-888888888883', '2026-07-09 14:33:26'),
+('4866dec3-d9f5-4cd1-b99c-d9b41902bbdc', '88888888-8888-8888-8888-888888888882', '2026-07-09 14:34:09'),
+('5432249b-7935-11f1-9f60-005056c00001', '88888888-8888-8888-8888-888888888881', '2026-07-09 14:33:15'),
+('cce2d614-793f-11f1-9f60-005056c00001', '88888888-8888-8888-8888-888888888884', '2026-07-09 14:34:19'),
+('e62309da-793c-11f1-9f60-005056c00001', '88888888-8888-8888-8888-888888888885', '2026-07-09 14:34:28');
 
 -- --------------------------------------------------------
 
@@ -550,7 +626,8 @@ CREATE TABLE `scorecards` (
 --
 
 INSERT INTO `scorecards` (`scorecard_id`, `application_id`, `evaluator_user_id`, `research_score`, `teaching_score`, `service_score`, `research_sub_scores`, `teaching_sub_scores`, `service_sub_scores`, `total_score`, `comment`, `evaluated_at`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('66666666-6666-6666-6666-666666666661', '22222222-2222-2222-2222-222222222222', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 85, 78, 82, '{\"publications\": 45, \"conference_papers\": 25, \"research_grants\": 15}', '{\"student_evaluations\": 35, \"curriculum_development\": 25, \"supervision\": 18}', '{\"university_service\": 35, \"community_service\": 25, \"professional_development\": 22}', 82.50, 'مرشح قوي للترقية مع نتائج بحثية ممتازة وتقييمات تعليمية جيدة', '2026-07-06 00:48:38', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL);
+('66666666-6666-6666-6666-666666666661', '22222222-2222-2222-2222-222222222222', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 85, 78, 82, '{\"publications\": 45, \"conference_papers\": 25, \"research_grants\": 15}', '{\"student_evaluations\": 35, \"curriculum_development\": 25, \"supervision\": 18}', '{\"university_service\": 35, \"community_service\": 25, \"professional_development\": 22}', 82.50, 'مرشح قوي للترقية مع نتائج بحثية ممتازة وتقييمات تعليمية جيدة', '2026-07-06 00:48:38', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL),
+('8a54ed25-8810-4c6d-aa34-93cf29d11434', '81f83387-0580-4aed-8976-5b8e2272897c', '5432249b-7935-11f1-9f60-005056c00001', 1, 2, 3, NULL, NULL, NULL, 6.00, 'try', '2026-07-09 11:24:27', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-09 11:24:27', '2026-07-09 11:24:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -566,6 +643,13 @@ CREATE TABLE `sessions` (
   `payload` longtext NOT NULL,
   `last_activity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('AIrv7VfyMfBwZE8KSYU30quFtp3nPX88GGI9MkjS', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/149.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiVXVwU3FLcjRJT1FsSGJsaTVPVUJjdWQ1NjZ0RmNUbXJyeEFjNlR0YSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7czo1OiJyb3V0ZSI7czoxMDoibG9naW4uZm9ybSI7fX0=', 1783625224);
 
 -- --------------------------------------------------------
 
@@ -619,11 +703,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `preferred_language`, `is_locked`, `failed_attempts`, `lockout_until`, `remember_token`, `created_at`, `updated_at`) VALUES
-('2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'saja_faculty', 'saja@uimp.edu.ly', '$2y$12$Tb6Jcoqt5LHX98bfhQJYv.dUEJmokNvloyeHKCapN8U1T2D6q/tYK', 'ar', 0, 0, NULL, NULL, '2026-06-16 13:29:57', '2026-06-16 13:29:57'),
-('4866dec3-d9f5-4cd1-b99c-d9b41902bbdc', 'dania_student', 'dania@uimp.edu.ly', '$2y$12$/5clw2zry7lKkaAR48rjUeBnaC.SETISMQO0wqiqBSJnkSVq6XqfG', 'ar', 0, 0, NULL, NULL, '2026-06-16 13:29:56', '2026-06-16 13:29:56'),
+('2eebef66-2b5c-484e-b97c-1d2db4cfefd6', 'saja_faculty', 'saja@uimp.edu.ly', '$2y$12$x7WiDEjb6DqNkz/mk5UziuFrMMY8Csi.6gMp.bLwyr0WIx20o.YfW', 'ar', 0, 0, NULL, NULL, '2026-06-16 13:29:57', '2026-07-09 12:21:25'),
+('4866dec3-d9f5-4cd1-b99c-d9b41902bbdc', 'dania_student', 'dania@uimp.edu.ly', '$2y$12$jQSrr2Ppgv6GRaI3kkfKU.5EH9ST/trcP894lN7DP77qlp0mLoERW', 'ar', 0, 0, NULL, NULL, '2026-06-16 13:29:56', '2026-07-09 12:22:05'),
 ('5432249b-7935-11f1-9f60-005056c00001', 'mustabeen', 'mustabeen@uimp.edu.ly', '$2y$12$1mYAd5VwptHe0z0VgrVNfOuCS7HQulPfE.EooNpUbMbBeTVOESsry', 'ar', 0, 0, NULL, NULL, '2026-07-06 12:22:15', '2026-07-06 11:53:53'),
-('cce2d614-793f-11f1-9f60-005056c00001', 'login_user', 'login@uimp.edu.ly', '$2y$12$6X9v8Qp2zq3Wm9eR0cJd0uV8q7HkJvG8bZpL1xQmTtYk8sVn1aF3e', 'ar', 0, 0, NULL, NULL, '2026-07-06 13:37:12', '2026-07-06 13:37:12'),
-('e62309da-793c-11f1-9f60-005056c00001', 'test_user', 'test@uimp.edu.ly', '$2y$12$wH3Q8mG7yY0J9kq1pZb9hOQ9qQm5cV3y0xV6h8fQ8zZp9QeQm3a2S', 'ar', 0, 0, NULL, NULL, '2026-07-06 13:16:26', '2026-07-06 13:16:26');
+('cce2d614-793f-11f1-9f60-005056c00001', 'aynor', 'login@uimp.edu.ly', '$2y$12$mcfHo/rbyuMilF/6ar2anuKgYYblluJNWYJPz8bMo/yPKYvAgEitm', 'ar', 0, 0, NULL, NULL, '2026-07-06 13:37:12', '2026-07-09 17:25:02'),
+('e62309da-793c-11f1-9f60-005056c00001', 'test_user', 'test@uimp.edu.ly', '$2y$12$nX7Txc5UdW98dfjbSzOAGekSMdkIcp7jaj9dXtZt9RvdQaVGnjie2', 'ar', 0, 0, NULL, NULL, '2026-07-06 13:16:26', '2026-07-09 17:25:15');
 
 -- --------------------------------------------------------
 
@@ -680,13 +764,23 @@ CREATE TABLE `workflow_states` (
 --
 
 INSERT INTO `workflow_states` (`state_id`, `application_id`, `state`, `from_state`, `comment`, `performed_by_user_id`, `performed_at`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+('03ea7ed1-69dd-4288-9267-c22374f82b3f', '019f4471-4ce7-72f1-987f-3e68d0fe700d', 'FACULTY_REVIEW', NULL, NULL, '5432249b-7935-11f1-9f60-005056c00001', '2026-07-08 23:45:02', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-08 23:45:02', '2026-07-08 23:45:02', NULL),
 ('33333333-3333-3333-3333-333333333333', '22222222-2222-2222-2222-222222222222', 'DRAFT', NULL, 'تم إنشاء الطلب', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 00:48:38', '2026-07-06 00:48:38', NULL),
 ('33333333-3333-3333-3333-333333333334', '22222222-2222-2222-2222-222222222222', 'SUBMITTED', 'DRAFT', 'تم تقديم الطلب للمراجعة', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 08:00:00', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 08:00:00', '2026-07-06 08:00:00', NULL),
-('33333333-3333-3333-3333-333333333335', '22222222-2222-2222-2222-222222222222', 'DEPARTMENT_REVIEW', 'SUBMITTED', 'تم إحالة الطلب إلى لجنة القسم', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 09:00:00', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 09:00:00', '2026-07-06 09:00:00', NULL);
+('33333333-3333-3333-3333-333333333335', '22222222-2222-2222-2222-222222222222', 'DEPARTMENT_REVIEW', 'SUBMITTED', 'تم إحالة الطلب إلى لجنة القسم', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 09:00:00', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2eebef66-2b5c-484e-b97c-1d2db4cfefd6', '2026-07-06 09:00:00', '2026-07-06 09:00:00', NULL),
+('4087a458-0c0f-47d6-a9d9-4261bcea7a9f', '019f4471-4ce7-72f1-987f-3e68d0fe700d', 'APPROVED', 'DEPARTMENT_REVIEW', 'ااا', '5432249b-7935-11f1-9f60-005056c00001', '2026-07-08 23:46:48', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-08 23:46:48', '2026-07-08 23:46:48', NULL),
+('7442af12-3eeb-4880-a669-d42429e8ce17', 'a49b3f34-e43e-4fee-8c0f-e161fb27eb16', 'SUBMITTED', NULL, 'Promotion request submitted', '5432249b-7935-11f1-9f60-005056c00001', '2026-07-09 11:05:45', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-09 11:05:45', '2026-07-09 11:05:45', NULL),
+('89098a04-e431-4daa-8fba-dfb50aeae741', '019f4471-4ce7-72f1-987f-3e68d0fe700d', 'DEPARTMENT_REVIEW', 'FACULTY_REVIEW', NULL, '5432249b-7935-11f1-9f60-005056c00001', '2026-07-08 23:45:30', '5432249b-7935-11f1-9f60-005056c00001', NULL, '2026-07-08 23:45:30', '2026-07-08 23:45:30', NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `appeals`
+--
+ALTER TABLE `appeals`
+  ADD PRIMARY KEY (`appeal_id`);
 
 --
 -- Indexes for table `audit_logs`
@@ -831,6 +925,14 @@ ALTER TABLE `promotion_cycles`
   ADD KEY `promotion_cycles_updated_by_foreign` (`updated_by`);
 
 --
+-- Indexes for table `promotion_requests`
+--
+ALTER TABLE `promotion_requests`
+  ADD PRIMARY KEY (`request_id`),
+  ADD KEY `promotion_requests_user_id_index` (`user_id`),
+  ADD KEY `promotion_requests_cycle_id_index` (`cycle_id`);
+
+--
 -- Indexes for table `promotion_roles`
 --
 ALTER TABLE `promotion_roles`
@@ -955,7 +1057,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `promotion_audit_logs`
@@ -1002,6 +1104,13 @@ ALTER TABLE `promotion_audit_logs`
 ALTER TABLE `promotion_cycles`
   ADD CONSTRAINT `promotion_cycles_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `promotion_cycles_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `promotion_requests`
+--
+ALTER TABLE `promotion_requests`
+  ADD CONSTRAINT `promotion_requests_cycle_id_foreign` FOREIGN KEY (`cycle_id`) REFERENCES `promotion_cycles` (`cycle_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `promotion_requests_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `promotion_user_roles`
