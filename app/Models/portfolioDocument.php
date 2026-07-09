@@ -10,11 +10,16 @@ class PortfolioDocument extends Model
     use HasUuids;
 
     protected $table = 'portfolio_documents';
+
     protected $primaryKey = 'document_id';
+
     public $incrementing = false;
+
     protected $keyType = 'string';
 
+
     protected $fillable = [
+        'document_id',
         'application_id',
         'uploaded_by_user_id',
         'type',
@@ -23,11 +28,18 @@ class PortfolioDocument extends Model
         'storage_path',
         'file_size',
         'file_mime_type',
-        'uploaded_at'
+        'uploaded_at',
+        'created_by',
+        'updated_by'
     ];
 
-    public function application()
+
+    public function request()
     {
-        return $this->belongsTo(PromotionApplication::class, 'application_id');
+        return $this->belongsTo(
+            PromotionRequest::class,
+            'application_id',
+            'request_id'
+        );
     }
 }

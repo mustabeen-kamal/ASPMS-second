@@ -5,34 +5,35 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 
-class Scorecard extends Model
+class Appeal extends Model
 {
     use HasUuids;
 
-    protected $table = 'scorecards';
+    protected $table = 'appeals';
 
-    protected $primaryKey = 'scorecard_id';
+    protected $primaryKey = 'appeal_id';
 
     public $incrementing = false;
 
     protected $keyType = 'string';
 
+
     protected $fillable = [
-        'scorecard_id',
+
+        'appeal_id',
         'application_id',
-        'evaluator_user_id',
-        'research_score',
-        'teaching_score',
-        'service_score',
-        'research_sub_scores',
-        'teaching_sub_scores',
-        'service_sub_scores',
-        'total_score',
-        'comment',
-        'evaluated_at',
+        'appellant_user_id',
+        'reason',
+        'status',
+        'response',
+        'reviewed_by_user_id',
+        'submitted_at',
+        'reviewed_at',
         'created_by',
         'updated_by'
+
     ];
+
 
     public function application()
     {
@@ -43,11 +44,12 @@ class Scorecard extends Model
         );
     }
 
-    public function evaluator()
+
+    public function user()
     {
         return $this->belongsTo(
             User::class,
-            'evaluator_user_id',
+            'appellant_user_id',
             'id'
         );
     }

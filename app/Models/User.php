@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
-
+use App\Models\Employee;
+use App\Models\PromotionRole;
 class User extends Authenticatable
 {
     use HasApiTokens, Notifiable, HasUuids;
@@ -46,9 +47,13 @@ class User extends Authenticatable
     }
 
     public function employee()
-    {
-        return $this->hasOne(Employee::class);
-    }
+{
+    return $this->hasOne(
+        Employee::class,
+        'user_id',
+        'id'
+    );
+}
 
     public function student()
     {
@@ -58,5 +63,15 @@ class User extends Authenticatable
     public function role()
 {
     return $this->belongsTo(Role::class);
+}
+
+public function roles()
+{
+    return $this->belongsToMany(
+        PromotionRole::class,
+        'promotion_user_roles',
+        'user_id',
+        'role_id'
+    );
 }
 }

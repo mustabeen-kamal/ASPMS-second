@@ -9,7 +9,6 @@ use ApiResponse;
 
 class UserController extends Controller
 {
-    use ApiResponse;
 
     public function index()
     {

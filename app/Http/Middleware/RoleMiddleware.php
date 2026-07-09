@@ -8,17 +8,25 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RoleMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  Closure(Request): (Response)  $next
-     */
-    public function handle($request, Closure $next, $role)
-{
-    if ($request->user()->role->name !== $role) {
-        return response()->json(['message' => 'Unauthorized'], 403);
-    }
+    public function handle(Request $request, Closure $next, ...$roles): Response
+    {
+        $user = auth()->user();
 
-    return $next($request);
-}
+        if (!$user) {
+            return redirect()->route('login');
+        }
+
+
+        $hasRole = $user->roles()
+            ->whereIn('name', $roles)
+            ->exists();
+
+
+        if (!$hasRole) {
+            abort(403, 'Unauthorized action');
+        }
+
+
+        return $next($request);
+    }
 }
